@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:pm_ajay/core/data/demo_data_provider.dart';
+import 'package:pm_ajay/domain/entities/project.dart';
 
 class ProjectsListPage extends StatefulWidget {
   const ProjectsListPage({super.key});
@@ -127,68 +129,114 @@ class _ProjectsListPageState extends State<ProjectsListPage> {
   }
 
   Widget _buildProjectsList() {
-    // Mock data
-    final projects = [
-      {
-        'id': '1',
-        'name': 'Adarsh Gram Development - Phase 1',
-        'component': 'Adarsh Gram',
-        'agency': 'Gujarat Rural Development Agency',
-        'state': 'Gujarat',
-        'status': 'In Progress',
-        'progress': 65,
-        'budget': '₹15.5 Cr',
-        'startDate': '01 Jan 2024',
-        'endDate': '31 Dec 2024',
-      },
-      {
-        'id': '2',
-        'name': 'Student Hostel Construction - Delhi',
-        'component': 'Hostel',
-        'agency': 'Delhi Social Welfare Board',
-        'state': 'Delhi',
-        'status': 'Completed',
-        'progress': 100,
-        'budget': '₹8.2 Cr',
-        'startDate': '15 Jun 2023',
-        'endDate': '30 Nov 2023',
-      },
-      {
-        'id': '3',
-        'name': 'GIA Distribution - Q4 2024',
-        'component': 'GIA',
-        'agency': 'Maharashtra Social Welfare Dept',
-        'state': 'Maharashtra',
-        'status': 'Pending',
-        'progress': 25,
-        'budget': '₹25.0 Cr',
-        'startDate': '01 Oct 2024',
-        'endDate': '31 Mar 2025',
-      },
-      {
-        'id': '4',
-        'name': 'Adarsh Gram Infrastructure - Tamil Nadu',
-        'component': 'Adarsh Gram',
-        'agency': 'TN Backward Classes Corporation',
-        'state': 'Tamil Nadu',
-        'status': 'In Progress',
-        'progress': 45,
-        'budget': '₹20.3 Cr',
-        'startDate': '15 Feb 2024',
-        'endDate': '15 Aug 2025',
-      },
-    ];
+    // Get all projects from DemoDataProvider
+    final allProjects = DemoDataProvider.getDemoProjects();
+    
+    // Filter projects based on selected component type
+    List<Project> filteredProjects = allProjects;
+    
+    if (_selectedComponent != 'All') {
+      filteredProjects = filteredProjects.where((project) {
+        switch (_selectedComponent) {
+          case 'Adarsh Gram':
+            return project.type == ProjectType.adarshGram;
+          case 'GIA':
+            return project.type == ProjectType.gia;
+          case 'Hostel':
+            return project.type == ProjectType.hostel;
+          default:
+            return true;
+        }
+      }).toList();
+    }
+    
+    // Filter projects based on selected status
+    if (_selectedStatus != 'All') {
+      filteredProjects = filteredProjects.where((project) {
+        switch (_selectedStatus) {
+          case 'In Progress':
+            return project.status == ProjectStatus.inProgress;
+          case 'Completed':
+            return project.status == ProjectStatus.completed;
+          case 'Pending':
+            return project.status == ProjectStatus.approved;
+          default:
+            return true;
+        }
+      }).toList();
+    }
+    
+    // Filter projects based on search query
+    final searchQuery = _searchController.text.toLowerCase();
+    if (searchQuery.isNotEmpty) {
+      filteredProjects = filteredProjects.where((project) {
+        return project.name.toLowerCase().contains(searchQuery) ||
+               (project.location.state?.toLowerCase().contains(searchQuery) ?? false) ||
+               (project.location.district?.toLowerCase().contains(searchQuery) ?? false);
+      }).toList();
+    }
 
     return ListView.builder(
       padding: const EdgeInsets.all(16),
-      itemCount: projects.length,
+      itemCount: filteredProjects.length,
       itemBuilder: (context, index) {
-        final project = projects[index];
+        final project = filteredProjects[index];
+        
+        // Map project type to component label
+        String componentLabel;
+        switch (project.type) {
+          case ProjectType.adarshGram:
+            componentLabel = 'Adarsh Gram';
+            break;
+          case ProjectType.gia:
+            componentLabel = 'GIA';
+            break;
+          case ProjectType.hostel:
+            componentLabel = 'Hostel';
+            break;
+          case ProjectType.other:
+            componentLabel = 'Other';
+            break;
+        }
+        
+        // Map project status to status label
+        String statusLabel;
+        switch (project.status) {
+          case ProjectStatus.inProgress:
+            statusLabel = 'In Progress';
+            break;
+          case ProjectStatus.completed:
+            statusLabel = 'Completed';
+            break;
+          case ProjectStatus.approved:
+            statusLabel = 'Pending';
+            break;
+          case ProjectStatus.delayed:
+            statusLabel = 'Delayed';
+            break;
+          case ProjectStatus.planning:
+            statusLabel = 'Planning';
+            break;
+          case ProjectStatus.suspended:
+            statusLabel = 'Suspended';
+            break;
+          case ProjectStatus.cancelled:
+            statusLabel = 'Cancelled';
+            break;
+        }
+        
+        // Format budget
+        final budgetInCr = (project.metadata['estimatedCost'] as int) / 10000000;
+        final budgetLabel = '₹${budgetInCr.toStringAsFixed(1)} Cr';
+        
+        // Format dates
+        final startDate = '${project.startDate.day.toString().padLeft(2, '0')} ${_getMonthName(project.startDate.month)} ${project.startDate.year}';
+        final endDate = '${project.expectedEndDate.day.toString().padLeft(2, '0')} ${_getMonthName(project.expectedEndDate.month)} ${project.expectedEndDate.year}';
         return Card(
           margin: const EdgeInsets.only(bottom: 12),
           child: InkWell(
             onTap: () {
-              context.push('/projects/${project['id']}');
+              context.push('/projects/${project.id}');
             },
             borderRadius: BorderRadius.circular(12),
             child: Padding(
@@ -200,11 +248,11 @@ class _ProjectsListPageState extends State<ProjectsListPage> {
                     children: [
                       Expanded(
                         child: Text(
-                          project['name'] as String,
+                          project.name,
                           style: Theme.of(context).textTheme.titleMedium,
                         ),
                       ),
-                      _buildStatusChip(project['status'] as String),
+                      _buildStatusChip(statusLabel),
                     ],
                   ),
                   const SizedBox(height: 12),
@@ -212,17 +260,17 @@ class _ProjectsListPageState extends State<ProjectsListPage> {
                     children: [
                       _buildInfoChip(
                         Icons.category,
-                        project['component'] as String,
+                        componentLabel,
                       ),
                       const SizedBox(width: 8),
                       _buildInfoChip(
                         Icons.location_on,
-                        project['state'] as String,
+                        project.location.state ?? 'N/A',
                       ),
                       const SizedBox(width: 8),
                       _buildInfoChip(
                         Icons.account_balance_wallet,
-                        project['budget'] as String,
+                        budgetLabel,
                       ),
                     ],
                   ),
@@ -231,13 +279,13 @@ class _ProjectsListPageState extends State<ProjectsListPage> {
                     children: [
                       Expanded(
                         child: LinearProgressIndicator(
-                          value: (project['progress'] as int) / 100,
+                          value: project.completionPercentage / 100,
                           backgroundColor: Colors.grey[200],
                         ),
                       ),
                       const SizedBox(width: 12),
                       Text(
-                        '${project['progress']}%',
+                        '${project.completionPercentage.toStringAsFixed(0)}%',
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
                               fontWeight: FontWeight.w600,
                             ),
@@ -246,7 +294,7 @@ class _ProjectsListPageState extends State<ProjectsListPage> {
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    '${project['startDate']} - ${project['endDate']}',
+                    '$startDate - $endDate',
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
                           color: Colors.grey[600],
                         ),
@@ -258,6 +306,14 @@ class _ProjectsListPageState extends State<ProjectsListPage> {
         );
       },
     );
+  }
+  
+  String _getMonthName(int month) {
+    const months = [
+      'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+      'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+    ];
+    return months[month - 1];
   }
 
   Widget _buildStatusChip(String status) {
@@ -271,6 +327,9 @@ class _ProjectsListPageState extends State<ProjectsListPage> {
         break;
       case 'Pending':
         color = Colors.orange;
+        break;
+      case 'Delayed':
+        color = Colors.red;
         break;
       default:
         color = Colors.grey;

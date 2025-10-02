@@ -3,6 +3,7 @@ import '../../domain/entities/project.dart';
 import '../../domain/entities/fund.dart';
 import '../../domain/entities/citizen.dart';
 import '../../domain/entities/blockchain_record.dart';
+import '../../features/adarsh_gram/data/models/village_model.dart';
 
 /// Provides realistic demo data for showcasing PM-AJAY features
 class DemoDataProvider {
@@ -14,13 +15,13 @@ class DemoDataProvider {
         name: 'Ministry of Rural Development',
         type: AgencyType.implementing,
         description: 'Primary implementing agency for PM-AJAY scheme',
-        responsibilities: [
+        responsibilities: const [
           'Scheme implementation',
           'Fund allocation',
           'Policy guidelines',
           'Monitoring and evaluation',
         ],
-        connectedAgencyIds: ['AGY002', 'AGY003', 'AGY004'],
+        connectedAgencyIds: const ['AGY002', 'AGY003', 'AGY004'],
         coordinationScore: 0.87,
         status: AgencyStatus.active,
         contactInfo: const ContactInfo(
@@ -30,7 +31,7 @@ class DemoDataProvider {
           address: 'Krishi Bhawan, New Delhi',
           contactPerson: 'Dr. Rajesh Kumar (IAS)',
         ),
-        aiInsights: {
+        aiInsights: const {
           'overlapScore': 0.15,
           'recommendedActions': ['Improve coordination with state agencies'],
           'predictedDelays': 2,
@@ -43,13 +44,13 @@ class DemoDataProvider {
         name: 'State Rural Development Agency - UP',
         type: AgencyType.executing,
         description: 'State-level executing agency for Uttar Pradesh',
-        responsibilities: [
+        responsibilities: const [
           'Project execution',
           'Field monitoring',
           'Beneficiary selection',
           'Local coordination',
         ],
-        connectedAgencyIds: ['AGY001', 'AGY005'],
+        connectedAgencyIds: const ['AGY001', 'AGY005'],
         coordinationScore: 0.92,
         status: AgencyStatus.active,
         contactInfo: const ContactInfo(
@@ -59,7 +60,7 @@ class DemoDataProvider {
           address: 'Lucknow, Uttar Pradesh',
           contactPerson: 'Smt. Priya Sharma (PCS)',
         ),
-        aiInsights: {
+        aiInsights: const {
           'overlapScore': 0.08,
           'recommendedActions': ['Excellent performance, continue current approach'],
           'predictedDelays': 0,
@@ -72,12 +73,12 @@ class DemoDataProvider {
         name: 'District Administration - Varanasi',
         type: AgencyType.executing,
         description: 'District-level project execution',
-        responsibilities: [
+        responsibilities: const [
           'Ground-level execution',
           'Community mobilization',
           'Progress reporting',
         ],
-        connectedAgencyIds: ['AGY001', 'AGY002'],
+        connectedAgencyIds: const ['AGY001', 'AGY002'],
         coordinationScore: 0.68,
         status: AgencyStatus.active,
         contactInfo: const ContactInfo(
@@ -86,7 +87,7 @@ class DemoDataProvider {
           address: 'Collectorate, Varanasi',
           contactPerson: 'Shri Anil Verma (IAS)',
         ),
-        aiInsights: {
+        aiInsights: const {
           'overlapScore': 0.32,
           'recommendedActions': ['Increase coordination meetings', 'Additional training recommended'],
           'predictedDelays': 3,
@@ -167,7 +168,7 @@ class DemoDataProvider {
           ),
         ],
         blockchainRecordId: 'BC001',
-        metadata: {
+        metadata: const {
           'estimatedCost': 50000000,
           'beneficiaries': 2500,
           'contractor': 'ABC Infrastructure Pvt Ltd',
@@ -205,8 +206,8 @@ class DemoDataProvider {
         startDate: DateTime.now().add(const Duration(days: 10)),
         expectedEndDate: DateTime.now().add(const Duration(days: 240)),
         completionPercentage: 8.0,
-        alerts: [],
-        metadata: {
+        alerts: const [],
+        metadata: const {
           'estimatedCost': 35000000,
           'capacity': 150,
           'type': 'Girls Tribal Hostel',
@@ -222,7 +223,7 @@ class DemoDataProvider {
         implementingAgencyId: 'AGY001',
         executingAgencyId: 'AGY003',
         status: ProjectStatus.delayed,
-        milestones: [],
+        milestones: const [],
         location: const GeoLocation(
           latitude: 25.3817,
           longitude: 82.9987,
@@ -254,7 +255,7 @@ class DemoDataProvider {
             isResolved: false,
           ),
         ],
-        metadata: {
+        metadata: const {
           'estimatedCost': 42000000,
           'beneficiaries': 1800,
         },
@@ -271,7 +272,7 @@ class DemoDataProvider {
         executingAgencyId: 'AGY002',
         allocatedFundId: 'FUND001',
         status: ProjectStatus.inProgress,
-        milestones: [],
+        milestones: const [],
         location: const GeoLocation(
           latitude: 26.9124,
           longitude: 75.7873,
@@ -283,8 +284,8 @@ class DemoDataProvider {
         startDate: DateTime.now().subtract(const Duration(days: 60)),
         expectedEndDate: DateTime.now().add(const Duration(days: 120)),
         completionPercentage: 35.0,
-        alerts: [],
-        metadata: {
+        alerts: const [],
+        metadata: const {
           'estimatedCost': 30000000,
           'beneficiaries': 1500,
         },
@@ -299,7 +300,7 @@ class DemoDataProvider {
         implementingAgencyId: 'AGY001',
         executingAgencyId: 'AGY002',
         status: ProjectStatus.approved,
-        milestones: [],
+        milestones: const [],
         location: const GeoLocation(
           latitude: 23.0225,
           longitude: 72.5714,
@@ -311,8 +312,8 @@ class DemoDataProvider {
         startDate: DateTime.now().add(const Duration(days: 20)),
         expectedEndDate: DateTime.now().add(const Duration(days: 200)),
         completionPercentage: 5.0,
-        alerts: [],
-        metadata: {
+        alerts: const [],
+        metadata: const {
           'estimatedCost': 20000000,
           'beneficiaries': 800,
         },
@@ -327,7 +328,7 @@ class DemoDataProvider {
         implementingAgencyId: 'AGY001',
         executingAgencyId: 'AGY002',
         status: ProjectStatus.inProgress,
-        milestones: [],
+        milestones: const [],
         location: const GeoLocation(
           latitude: 18.5204,
           longitude: 73.8567,
@@ -339,8 +340,8 @@ class DemoDataProvider {
         startDate: DateTime.now().subtract(const Duration(days: 75)),
         expectedEndDate: DateTime.now().add(const Duration(days: 165)),
         completionPercentage: 52.0,
-        alerts: [],
-        metadata: {
+        alerts: const [],
+        metadata: const {
           'estimatedCost': 45000000,
           'capacity': 200,
         },
@@ -355,7 +356,7 @@ class DemoDataProvider {
         implementingAgencyId: 'AGY001',
         executingAgencyId: 'AGY002',
         status: ProjectStatus.inProgress,
-        milestones: [],
+        milestones: const [],
         location: const GeoLocation(
           latitude: 13.0827,
           longitude: 80.2707,
@@ -367,8 +368,8 @@ class DemoDataProvider {
         startDate: DateTime.now().subtract(const Duration(days: 50)),
         expectedEndDate: DateTime.now().add(const Duration(days: 130)),
         completionPercentage: 40.0,
-        alerts: [],
-        metadata: {
+        alerts: const [],
+        metadata: const {
           'estimatedCost': 38000000,
           'beneficiaries': 2000,
         },
@@ -383,7 +384,7 @@ class DemoDataProvider {
         implementingAgencyId: 'AGY001',
         executingAgencyId: 'AGY002',
         status: ProjectStatus.completed,
-        milestones: [],
+        milestones: const [],
         location: const GeoLocation(
           latitude: 12.9716,
           longitude: 77.5946,
@@ -395,8 +396,8 @@ class DemoDataProvider {
         startDate: DateTime.now().subtract(const Duration(days: 180)),
         expectedEndDate: DateTime.now().subtract(const Duration(days: 10)),
         completionPercentage: 100.0,
-        alerts: [],
-        metadata: {
+        alerts: const [],
+        metadata: const {
           'estimatedCost': 25000000,
           'beneficiaries': 600,
         },
@@ -411,7 +412,7 @@ class DemoDataProvider {
         implementingAgencyId: 'AGY001',
         executingAgencyId: 'AGY002',
         status: ProjectStatus.delayed,
-        milestones: [],
+        milestones: const [],
         location: const GeoLocation(
           latitude: 26.7271,
           longitude: 88.3953,
@@ -434,7 +435,7 @@ class DemoDataProvider {
             isResolved: false,
           ),
         ],
-        metadata: {
+        metadata: const {
           'estimatedCost': 32000000,
           'beneficiaries': 1200,
         },
@@ -449,7 +450,7 @@ class DemoDataProvider {
         implementingAgencyId: 'AGY001',
         executingAgencyId: 'AGY002',
         status: ProjectStatus.inProgress,
-        milestones: [],
+        milestones: const [],
         location: const GeoLocation(
           latitude: 26.1445,
           longitude: 91.7362,
@@ -461,8 +462,8 @@ class DemoDataProvider {
         startDate: DateTime.now().subtract(const Duration(days: 40)),
         expectedEndDate: DateTime.now().add(const Duration(days: 140)),
         completionPercentage: 28.0,
-        alerts: [],
-        metadata: {
+        alerts: const [],
+        metadata: const {
           'estimatedCost': 28000000,
           'capacity': 120,
         },
@@ -477,7 +478,7 @@ class DemoDataProvider {
         implementingAgencyId: 'AGY001',
         executingAgencyId: 'AGY002',
         status: ProjectStatus.approved,
-        milestones: [],
+        milestones: const [],
         location: const GeoLocation(
           latitude: 22.5726,
           longitude: 77.9545,
@@ -489,8 +490,8 @@ class DemoDataProvider {
         startDate: DateTime.now().add(const Duration(days: 15)),
         expectedEndDate: DateTime.now().add(const Duration(days: 195)),
         completionPercentage: 2.0,
-        alerts: [],
-        metadata: {
+        alerts: const [],
+        metadata: const {
           'estimatedCost': 35000000,
           'beneficiaries': 1800,
         },
@@ -519,14 +520,14 @@ class DemoDataProvider {
           ),
         ],
         releaseDate: DateTime.now().subtract(const Duration(days: 95)),
-        approvalChain: [
+        approvalChain: const [
           'Secretary, Rural Development',
           'Joint Secretary, Finance',
           'Director, PM-AJAY',
           'State Nodal Officer',
         ],
         blockchainRecordId: 'BC002',
-        metadata: {
+        metadata: const {
           'fiscalYear': '2024-25',
           'quarter': 'Q3',
           'scheme': 'PM-AJAY',
@@ -551,12 +552,12 @@ class DemoDataProvider {
         ],
         releaseDate: DateTime.now().add(const Duration(days: 10)),
         predictedReleaseDate: DateTime.now().add(const Duration(days: 17)),
-        approvalChain: [
+        approvalChain: const [
           'Secretary, Tribal Affairs',
           'Financial Advisor',
           'State Coordinator',
         ],
-        metadata: {
+        metadata: const {
           'fiscalYear': '2024-25',
           'category': 'Hostel Infrastructure',
         },
@@ -569,15 +570,15 @@ class DemoDataProvider {
         amount: 80000000, // 8 Crore
         source: 'State Contingency Fund',
         status: FundStatus.pending,
-        allocations: [],
+        allocations: const [],
         releaseDate: DateTime.now().add(const Duration(days: 5)),
         predictedReleaseDate: DateTime.now().add(const Duration(days: 25)),
-        approvalChain: [
+        approvalChain: const [
           'Chief Secretary',
           'Finance Secretary',
           'Development Commissioner',
         ],
-        metadata: {
+        metadata: const {
           'purpose': 'Project overruns and emergencies',
           'priority': 'high',
         },
@@ -610,7 +611,7 @@ class DemoDataProvider {
             projectId: 'PRJ001',
             priority: ReportPriority.medium,
             status: ReportStatus.assigned,
-            attachments: [],
+            attachments: const [],
             latitude: 25.2820,
             longitude: 82.9739,
             assignedAgencyId: 'AGY003',
@@ -639,7 +640,7 @@ class DemoDataProvider {
             projectId: 'PRJ003',
             priority: ReportPriority.low,
             status: ReportStatus.submitted,
-            attachments: [],
+            attachments: const [],
             createdAt: DateTime.now().subtract(const Duration(days: 2)),
           ),
         ],
@@ -695,5 +696,176 @@ class DemoDataProvider {
         },
       ],
     };
+  }
+
+  // Demo Villages for Adarsh Gram
+  static List<VillageModel> getDemoVillages() {
+    final now = DateTime.now();
+    return [
+      VillageModel(
+        id: 'VIL001',
+        name: 'Rampur',
+        district: 'Varanasi',
+        state: 'Uttar Pradesh',
+        pincode: '221002',
+        scPopulationPercentage: 56.0,
+        totalPopulation: 2500,
+        scPopulation: 1400,
+        totalHouseholds: 450,
+        scHouseholds: 252,
+        bplHouseholds: 120,
+        literacyRate: 68.5,
+        eligibilityStatus: VillageEligibilityStatus.selected,
+        lastUpdated: now,
+        censusCode: 'UP-VAR-001',
+        seccCode: 'SECC-2011-UP-001',
+        socioEconomicIndicators: const {
+          'povertyIndex': 0.35,
+          'employmentRate': 0.62,
+          'healthcareAccess': 0.58,
+        },
+        infrastructureGaps: const {
+          'pipedWater': true,
+          'allWeatherRoad': true,
+          'electricity': false,
+          'primaryHealthCenter': true,
+          'drainageSystem': true,
+        },
+        convergentSchemes: const ['MGNREGA', 'PMAY-G', 'Swachh Bharat'],
+        priorityScore: 4.2,
+        selectedDate: now.subtract(const Duration(days: 30)),
+        selectedBy: 'District Magistrate, Varanasi',
+      ),
+      VillageModel(
+        id: 'VIL002',
+        name: 'Shivpur',
+        district: 'Jaunpur',
+        state: 'Uttar Pradesh',
+        pincode: '222001',
+        scPopulationPercentage: 54.7,
+        totalPopulation: 3200,
+        scPopulation: 1750,
+        totalHouseholds: 580,
+        scHouseholds: 317,
+        bplHouseholds: 145,
+        literacyRate: 71.2,
+        eligibilityStatus: VillageEligibilityStatus.selected,
+        lastUpdated: now,
+        censusCode: 'UP-JAU-002',
+        infrastructureGaps: const {
+          'pipedWater': false,
+          'allWeatherRoad': true,
+          'electricity': false,
+          'primaryHealthCenter': false,
+          'drainageSystem': false,
+        },
+        convergentSchemes: const ['PMGSY', 'Swachh Bharat Mission'],
+        priorityScore: 3.98,
+        selectedDate: now.subtract(const Duration(days: 25)),
+        selectedBy: 'Chief Development Officer, Jaunpur',
+      ),
+      VillageModel(
+        id: 'VIL003',
+        name: 'Chandrapur',
+        district: 'Azamgarh',
+        state: 'Uttar Pradesh',
+        pincode: '276001',
+        scPopulationPercentage: 55.6,
+        totalPopulation: 1800,
+        scPopulation: 1000,
+        totalHouseholds: 320,
+        scHouseholds: 178,
+        bplHouseholds: 85,
+        literacyRate: 65.3,
+        eligibilityStatus: VillageEligibilityStatus.eligible,
+        lastUpdated: now,
+        infrastructureGaps: const {
+          'pipedWater': true,
+          'allWeatherRoad': false,
+          'electricity': true,
+          'primaryHealthCenter': false,
+        },
+        convergentSchemes: const ['PM Kusum', 'PMGSY'],
+        priorityScore: 3.72,
+      ),
+      VillageModel(
+        id: 'VIL004',
+        name: 'Durgapur',
+        district: 'Ghazipur',
+        state: 'Uttar Pradesh',
+        pincode: '233001',
+        scPopulationPercentage: 52.4,
+        totalPopulation: 2100,
+        scPopulation: 1100,
+        totalHouseholds: 380,
+        scHouseholds: 199,
+        bplHouseholds: 95,
+        literacyRate: 69.8,
+        eligibilityStatus: VillageEligibilityStatus.selected,
+        lastUpdated: now,
+        infrastructureGaps: const {
+          'pipedWater': false,
+          'allWeatherRoad': true,
+          'electricity': false,
+          'primaryHealthCenter': true,
+        },
+        convergentSchemes: const ['Ayushman Bharat'],
+        priorityScore: 3.9,
+        selectedDate: now.subtract(const Duration(days: 20)),
+      ),
+      VillageModel(
+        id: 'VIL005',
+        name: 'Nandganj',
+        district: 'Basti',
+        state: 'Uttar Pradesh',
+        pincode: '272001',
+        scPopulationPercentage: 42.9,
+        totalPopulation: 2800,
+        scPopulation: 1200,
+        totalHouseholds: 500,
+        scHouseholds: 214,
+        bplHouseholds: 110,
+        literacyRate: 63.5,
+        eligibilityStatus: VillageEligibilityStatus.ineligible,
+        lastUpdated: now,
+        infrastructureGaps: const {
+          'pipedWater': false,
+          'allWeatherRoad': false,
+          'electricity': true,
+          'drainageSystem': true,
+        },
+        priorityScore: 2.5,
+      ),
+      VillageModel(
+        id: 'VIL006',
+        name: 'Keshavpur',
+        district: 'Gorakhpur',
+        state: 'Uttar Pradesh',
+        pincode: '273001',
+        scPopulationPercentage: 55.0,
+        totalPopulation: 3500,
+        scPopulation: 1925,
+        totalHouseholds: 630,
+        scHouseholds: 347,
+        bplHouseholds: 165,
+        literacyRate: 72.6,
+        eligibilityStatus: VillageEligibilityStatus.eligible,
+        lastUpdated: now,
+        censusCode: 'UP-GOR-006',
+        socioEconomicIndicators: const {
+          'povertyIndex': 0.32,
+          'employmentRate': 0.68,
+        },
+        infrastructureGaps: const {
+          'pipedWater': true,
+          'allWeatherRoad': true,
+          'electricity': false,
+          'primaryHealthCenter': false,
+          'drainageSystem': false,
+        },
+        convergentSchemes: const ['PMGSY', 'MGNREGA'],
+        priorityScore: 4.06,
+      ),
+    ];
   }
 }

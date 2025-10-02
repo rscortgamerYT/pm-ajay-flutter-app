@@ -56,8 +56,8 @@ class _ProjectsMapPageState extends State<ProjectsMapPage> with TickerProviderSt
             flex: _selectedProject != null ? 7 : 10,
             child: FlutterMap(
               mapController: _mapController,
-              options: MapOptions(
-                initialCenter: const LatLng(20.5937, 78.9629),
+              options: const MapOptions(
+                initialCenter: LatLng(20.5937, 78.9629),
                 initialZoom: 5.0,
                 minZoom: 4.0,
                 maxZoom: 18.0,
@@ -526,7 +526,7 @@ class _ProjectsMapPageState extends State<ProjectsMapPage> with TickerProviderSt
       project.location.latitude,
       project.location.longitude,
     );
-    final targetZoom = 13.0;
+    const targetZoom = 13.0;
     
     // Get current map state
     final currentCenter = _mapController.camera.center;

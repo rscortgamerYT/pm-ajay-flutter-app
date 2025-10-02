@@ -47,7 +47,7 @@ class _ReportsPageState extends State<ReportsPage> {
             child: _selectedReport == 'Overview'
                 ? _buildOverviewReport()
                 : Center(
-                    child: Text('${_selectedReport} Report Coming Soon'),
+                    child: Text('$_selectedReport Report Coming Soon'),
                   ),
           ),
         ],

@@ -1,7 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'agency.dart';
-import 'fund.dart';
-import 'blockchain_record.dart';
 
 /// Represents a project in the PM-AJAY system
 class Project extends Equatable {

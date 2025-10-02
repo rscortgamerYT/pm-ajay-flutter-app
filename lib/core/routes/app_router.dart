@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../features/auth/presentation/pages/login_page.dart';
 import '../../features/auth/presentation/pages/splash_page.dart';
 import '../../features/dashboard/presentation/pages/dashboard_page.dart';
+import '../../features/dashboard/presentation/pages/scroll_dashboard_page.dart';
 import '../../features/agencies/presentation/pages/agencies_list_page.dart';
 import '../../features/agencies/presentation/pages/agency_detail_page.dart';
 import '../../features/projects/presentation/pages/projects_list_page.dart';
@@ -16,6 +17,9 @@ import '../../features/reports/presentation/pages/reports_page.dart';
 import '../../features/profile/presentation/pages/profile_page.dart';
 import '../../features/ai_insights/presentation/pages/ai_insights_page.dart';
 import '../../features/map/presentation/pages/projects_map_page.dart';
+import '../../features/collaboration_hub/presentation/pages/collaboration_hub_page.dart';
+import '../../features/adarsh_gram/presentation/pages/villages_list_page.dart';
+import '../../features/adarsh_gram/presentation/pages/village_detail_page.dart';
 
 // Router Provider
 final appRouterProvider = Provider<GoRouter>((ref) {
@@ -37,11 +41,16 @@ final appRouterProvider = Provider<GoRouter>((ref) {
         builder: (context, state) => const LoginPage(),
       ),
       
-      // Dashboard Route
+      // Dashboard Routes
       GoRoute(
         path: '/dashboard',
         name: 'dashboard',
         builder: (context, state) => const DashboardPage(),
+      ),
+      GoRoute(
+        path: '/scroll-dashboard',
+        name: 'scroll-dashboard',
+        builder: (context, state) => const ScrollDashboardPage(),
       ),
       
       // Agency Routes
@@ -128,6 +137,35 @@ final appRouterProvider = Provider<GoRouter>((ref) {
         path: '/profile',
         name: 'profile',
         builder: (context, state) => const ProfilePage(),
+      ),
+      
+      // Collaboration Hub Route
+      GoRoute(
+        path: '/collaboration',
+        name: 'collaboration',
+        builder: (context, state) => const CollaborationHubPage(),
+      ),
+      
+      // Adarsh Gram Routes
+      GoRoute(
+        path: '/adarsh-gram',
+        name: 'adarsh-gram',
+        builder: (context, state) => const VillagesListPage(),
+      ),
+      GoRoute(
+        path: '/adarsh-gram/villages',
+        name: 'villages',
+        builder: (context, state) => const VillagesListPage(),
+        routes: [
+          GoRoute(
+            path: ':id',
+            name: 'village-detail',
+            builder: (context, state) {
+              final id = state.pathParameters['id']!;
+              return VillageDetailPage(villageId: id);
+            },
+          ),
+        ],
       ),
     ],
     

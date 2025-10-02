@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/data/demo_data_provider.dart';
-import '../../../../domain/entities/fund.dart';
 
 class FundsListPage extends StatefulWidget {
   const FundsListPage({super.key});

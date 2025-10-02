@@ -1,7 +1,6 @@
 import 'dart:math';
 import '../../domain/entities/fund.dart';
 import '../../domain/entities/project.dart';
-import '../../domain/entities/agency.dart';
 
 /// AI-powered service for predictive fund flow and resource management
 class FundPredictorService {
