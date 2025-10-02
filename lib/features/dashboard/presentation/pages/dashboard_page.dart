@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pm_ajay/features/map/presentation/pages/projects_map_page.dart';
+import 'package:pm_ajay/features/compliance/presentation/pages/compliance_hub_page.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
@@ -17,6 +18,7 @@ class _DashboardPageState extends State<DashboardPage> {
     const Center(child: Text('Projects')),
     const Center(child: Text('Funds')),
     const Center(child: Text('Reports')),
+    const ComplianceHubPage(),
     const ProjectsMapPage(),
   ];
 
@@ -64,6 +66,11 @@ class _DashboardPageState extends State<DashboardPage> {
             icon: Icon(Icons.assessment_outlined),
             selectedIcon: Icon(Icons.assessment),
             label: 'Reports',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.verified_user_outlined),
+            selectedIcon: Icon(Icons.verified_user),
+            label: 'Compliance',
           ),
           NavigationDestination(
             icon: Icon(Icons.map_outlined),
