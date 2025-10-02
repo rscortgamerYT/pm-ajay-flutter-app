@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pm_ajay/features/map/presentation/pages/projects_map_page.dart';
 import 'package:pm_ajay/features/compliance/presentation/pages/compliance_hub_page.dart';
+import 'package:pm_ajay/features/dashboard/presentation/pages/projects_demo_page.dart';
+import 'package:pm_ajay/features/dashboard/presentation/pages/funds_demo_page.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
@@ -14,8 +16,8 @@ class _DashboardPageState extends State<DashboardPage> {
   int _selectedIndex = 0;
 
   final List<Widget> _pages = [
-    const Center(child: Text('Projects')),
-    const Center(child: Text('Funds')),
+    const ProjectsDemoPage(),
+    const FundsDemoPage(),
     const Center(child: Text('Reports')),
     const ComplianceHubPage(),
     const ProjectsMapPage(),

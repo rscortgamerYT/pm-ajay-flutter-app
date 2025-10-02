@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import '../widgets/meeting_scheduler_dialog.dart';
 
-class ComplianceHubPage extends StatelessWidget {
+class ComplianceHubPage extends StatefulWidget {
   const ComplianceHubPage({super.key});
+
+  @override
+  State<ComplianceHubPage> createState() => _ComplianceHubPageState();
+}
+
+class _ComplianceHubPageState extends State<ComplianceHubPage> {
 
   @override
   Widget build(BuildContext context) {
@@ -232,7 +239,20 @@ class ComplianceHubPage extends StatelessWidget {
                 context,
                 'Schedule Review',
                 Icons.schedule,
-                () => context.push('/compliance/schedule'),
+                () async {
+                  final result = await showDialog(
+                    context: context,
+                    builder: (context) => const MeetingSchedulerDialog(),
+                  );
+                  if (result != null && mounted) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('Meeting scheduled: ${result['date']} at ${result['time']}'),
+                        backgroundColor: Colors.green,
+                      ),
+                    );
+                  }
+                },
               ),
             ],
           ),
