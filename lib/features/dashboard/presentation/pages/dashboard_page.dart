@@ -14,7 +14,6 @@ class _DashboardPageState extends State<DashboardPage> {
   int _selectedIndex = 0;
 
   final List<Widget> _pages = [
-    const DashboardHome(),
     const Center(child: Text('Projects')),
     const Center(child: Text('Funds')),
     const Center(child: Text('Reports')),
@@ -47,11 +46,6 @@ class _DashboardPageState extends State<DashboardPage> {
           });
         },
         destinations: const [
-          NavigationDestination(
-            icon: Icon(Icons.dashboard_outlined),
-            selectedIcon: Icon(Icons.dashboard),
-            label: 'Dashboard',
-          ),
           NavigationDestination(
             icon: Icon(Icons.folder_outlined),
             selectedIcon: Icon(Icons.folder),
